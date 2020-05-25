@@ -25,7 +25,7 @@ public class Demo extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Image image= new Image("cat.jpg");
+		Image image= new Image("ATTEMPT1.bmp");
 		PixelReader pr=image.getPixelReader();
 		ImageView imageView = new ImageView();
 	        imageView.setImage(image);
@@ -41,17 +41,19 @@ public class Demo extends Application {
 //		pr.getPixels(j, 0, 1, (int) image.getHeight(),g, buffer, 0, 1);
 		for(int i=0;i<height;i++) {
 //			System.out.println(buffer[i]);
-			Color color = pr.getColor(j, i);
-			Color color2=color.deriveColor((color.getHue()+180)%360, color.getSaturation(), color.getBrightness(), color.getOpacity());
-			System.out.print(color.toString()+" ");
-			System.out.print("Red "+color.getRed());
-			System.out.print("Green "+color.getGreen());
-			System.out.print("Blue "+color.getBlue()+"| ");
-			System.out.print(color2.toString()+" ");
-			System.out.print("Red "+color2.getRed());
-			System.out.print("Green "+color2.getGreen());
-			System.out.println("Blue "+color2.getBlue());
-			pixelWriter.setColor(j, i, color2);
+			//Color color = pr.getColor(j, i);
+			int inverted=pr.getArgb(j, i)^0xFFFFFF;
+			//Color color2=color.deriveColor((color.getHue()+180)%360, color.getSaturation(), color.getBrightness(), color.getOpacity());
+			//Color color2=color^0xFFFFFF;
+//			System.out.print(color.toString()+" ");
+//			System.out.print("Red "+color.getRed());
+//			System.out.print("Green "+color.getGreen());
+//			System.out.print("Blue "+color.getBlue()+"| ");
+//			System.out.print(color2.toString()+" ");
+//			System.out.print("Red "+color2.getRed());
+//			System.out.print("Green "+color2.getGreen());
+//			System.out.println("Blue "+color2.getBlue());
+			pixelWriter.setArgb(j, i, inverted);
 		}
 		
 		}
