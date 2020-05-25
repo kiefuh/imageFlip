@@ -1,9 +1,14 @@
 package demo;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.nio.IntBuffer;
+
+import javax.imageio.ImageIO;
 
 import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -55,8 +60,31 @@ public class Demo extends Application {
 //			System.out.println("Blue "+color2.getBlue());
 			pixelWriter.setArgb(j, i, inverted);
 		}
-		
 		}
+		double max=0;
+		double min=360;
+		for(int i=0;i<width;i++) {
+			
+			for(int j=0;j<height;j++) {
+				Color color=wImage.getPixelReader().getColor(i, j);
+				if(max<color.getHue()) {
+					max=color.getHue();
+				}
+				if(min>color.getHue()) {
+					min=color.getHue();
+				}
+			}
+		}
+		double hue=max/min;
+		for(int i=0;i<width;i++) {
+			for(int j=0;j<height;j++) {
+				Color color=wImage.getPixelReader().getColor(i, j);
+				hue=1/(color.getHue()/360);
+				color=color.deriveColor(hue, color.getSaturation(), color.getBrightness(), color.getOpacity());
+				pixelWriter.setColor(i, j, color);
+			}
+		}
+		
 		System.out.println("finished");
 		    imageView.setImage(wImage);
 	        StackPane root = new StackPane();
