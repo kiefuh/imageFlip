@@ -25,10 +25,15 @@ public class Demo {
 		for(int i=0;i<height;i++) {
 //			System.out.println(buffer[i]);
 			Color color = pr.getColor(j, i);
+			Color color2=color.deriveColor(((color.getHue()+180)%360), color.getSaturation(), color.getBrightness(), color.getOpacity());
 			System.out.print(color.toString()+" ");
 			System.out.print("Red "+color.getRed());
 			System.out.print("Green "+color.getGreen());
-			System.out.println("Blue "+color.getBlue());
+			System.out.print("Blue "+color.getBlue()+"| ");
+			System.out.print(color2.toString()+" ");
+			System.out.print("Red "+color2.getRed());
+			System.out.print("Green "+color2.getGreen());
+			System.out.println("Blue "+color2.getBlue());
 		}
 		
 		}
