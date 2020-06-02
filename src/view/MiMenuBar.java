@@ -94,7 +94,7 @@ public class MiMenuBar extends MenuBar {
 			alert.showAndWait();
 		});
 		mContributors = new Menu("Contributors");
-		MenuItem miKleister = new MenuItem("Keifer Kleister");
+		MenuItem miKleister = new MenuItem("Kiefer Kleister");
 		miKleister.setOnAction(e -> {
 			MyWeb.open(MyWeb.KLEISTER_GITHUB);
 		});

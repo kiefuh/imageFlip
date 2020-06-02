@@ -29,7 +29,7 @@ public class Demo extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Image image= new Image("ATTEMPT1.bmp");
+		Image image= new Image("ATTEMPT1.png");
 		ImageView imageView = new ImageView();
 	    imageView.setImage(image);  
 	    Inverter inverter = new Inverter(image);
@@ -38,7 +38,7 @@ public class Demo extends Application {
 	    WritableImage fImage = wb.balance();
 		imageView.setImage(fImage);
 //	    imageView.setImage(wImage);
-		MyFiles.imageWriter(fImage, "save1.bmp");
+		MyFiles.imageWriter(fImage, "save1.png");
 	    StackPane root = new StackPane();
 	    root.getChildren().add(imageView);
 	    Scene scene = new Scene(root, 300, 250);
