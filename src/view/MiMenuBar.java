@@ -13,6 +13,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import model.ImageInverter;
 import utils.MyFiles;
@@ -48,7 +49,17 @@ public class MiMenuBar extends MenuBar {
 		});
 		miSaveAs = new MenuItem("Save As");
 		miSaveAs.setOnAction(event -> {
-			
+			File file = MyFiles.emitImageChooser().showSaveDialog(new Stage());
+			if (file != null) {
+				Object o = App.getRoot().getCenter();
+				if (o instanceof ImageView) {
+					ImageView iv = (ImageView) o;
+					Image img = iv.getImage();
+					WritableImage writableImage = new WritableImage(img.getPixelReader(), (int) img.getWidth(),
+							(int) img.getHeight());
+					MyFiles.imageWriter(writableImage, file);
+				}
+			}
 		});
 		miExit = new MenuItem("Exit");
 		miExit.setOnAction(event -> {

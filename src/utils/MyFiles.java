@@ -15,6 +15,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class MyFiles {
 	/**
 	 * Returns FileChooser object with Filter
+	 * 
 	 * @return FileChooser
 	 */
 	public static FileChooser emitImageChooser() {
@@ -27,15 +28,14 @@ public class MyFiles {
 		fc.getExtensionFilters().addAll(ef0, ef1, ef2, ef3, ef4);
 		return fc;
 	}
-	
-	public static void imageWriter(WritableImage wImage,String location) {
-		BufferedImage bi=SwingFXUtils.fromFXImage((Image)wImage, null);//converts to BufferedImage to save photo
-		File a=new File(location);
+
+	public static void imageWriter(WritableImage wImage, File file) {
+		BufferedImage bi = SwingFXUtils.fromFXImage((Image) wImage, null);// converts to BufferedImage to save photo
 		try {
-			ImageIO.write( bi, "png", a );
+			ImageIO.write(bi, "png", file);
 		} catch (IOException e) {
 			System.out.println("Image write failure");
 			e.printStackTrace();
-		}//end saving
+		} // end saving
 	}
 }
