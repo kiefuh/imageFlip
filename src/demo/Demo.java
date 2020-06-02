@@ -1,24 +1,13 @@
 package demo;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.nio.IntBuffer;
 
-import javax.imageio.ImageIO;
 
 import javafx.application.Application;
-import javafx.embed.swing.JFXPanel;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelFormat;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.image.WritablePixelFormat;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Inverter;
 import model.WhiteBalance;
