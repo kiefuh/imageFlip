@@ -4,19 +4,22 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import com.sun.javafx.webkit.WebConsoleListener;
+
 import app.App;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import model.ImageInverter;
 import utils.MyFiles;
+import utils.MyWeb;
 
 /**
  * Loads the menus: File, Edit, Window, and Help
@@ -28,6 +31,7 @@ public class MiMenuBar extends MenuBar {
 	private MenuItem miOpen, miSaveAs, miExit;
 	private MenuItem miColorNeg;
 	private MenuItem miAbout;
+	private Menu mContributors;
 
 	public MiMenuBar() {
 		initMenuItems();
@@ -40,12 +44,13 @@ public class MiMenuBar extends MenuBar {
 			File file = MyFiles.emitImageChooser().showOpenDialog(new Stage());
 			if (file != null) {
 				try { // Try to display image
+					final int PADDING = 100;
 					Image img = new Image(new FileInputStream(file));
 					ImageView iv = new ImageView(img);
 					App.getRoot().setCenter(iv);
 					Stage stage = (Stage) App.getRoot().getScene().getWindow();
-					stage.setWidth(img.getWidth() + 100);
-					stage.setHeight(img.getHeight() + 100);
+					stage.setWidth(img.getWidth() + PADDING);
+					stage.setHeight(img.getHeight() + PADDING);
 					stage.centerOnScreen();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
@@ -84,8 +89,20 @@ public class MiMenuBar extends MenuBar {
 		miAbout.setOnAction(event -> {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle(App.getTitle());
+			alert.setHeaderText("About");
+			alert.setContentText("A simple program that takes BMP, GIF, JPG, and PNG files and can invert them.  There may be some bugs or crashes.");
 			alert.showAndWait();
 		});
+		mContributors = new Menu("Contributors");
+		MenuItem miKleister = new MenuItem("Keifer Kleister");
+		miKleister.setOnAction(e -> {
+			MyWeb.open(MyWeb.KLEISTER_GITHUB);
+		});
+		MenuItem miCampos = new MenuItem("Michael Campos");
+		miCampos.setOnAction(e -> {
+			MyWeb.open(MyWeb.CAMPOS_GITHUB);
+		});
+		mContributors.getItems().addAll(miKleister, miCampos);
 	}
 
 	public void addMenuItems() {
@@ -94,10 +111,11 @@ public class MiMenuBar extends MenuBar {
 		mFile.getItems().addAll(miOpen, miSaveAs, miExit);
 		mEdit = new Menu("Edit");
 		mEdit.getItems().addAll(miColorNeg);
-		mWindow = new Menu("Window");
+//		mWindow = new Menu("Window");
 		mHelp = new Menu("Help");
-		mHelp.getItems().addAll(miAbout);
+		mHelp.getItems().addAll(mContributors, miAbout);
 		// Add Menus
-		super.getMenus().addAll(mFile, mEdit, mWindow, mHelp);
+//		super.getMenus().addAll(mFile, mEdit, mWindow, mHelp);
+		super.getMenus().addAll(mFile, mEdit, mHelp);
 	}
 }
