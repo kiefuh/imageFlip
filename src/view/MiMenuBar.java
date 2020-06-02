@@ -1,9 +1,13 @@
 package view;
 
+import java.io.File;
+
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
+import utils.MyFiles;
 
 /**
  * Loads the menus: File, Edit, Window, and Help
@@ -23,7 +27,13 @@ public class MiMenuBar extends MenuBar {
 
 	public void initMenuItems() {
 		miOpen = new MenuItem("Open");
+		miOpen.setOnAction(event -> {
+			File file = MyFiles.emitImageChooser().showOpenDialog(new Stage());
+		});
 		miSaveAs = new MenuItem("Save As");
+		miSaveAs.setOnAction(event -> {
+			
+		});
 		miExit = new MenuItem("Exit");
 		miExit.setOnAction(event -> {
 			Platform.exit();
@@ -33,6 +43,9 @@ public class MiMenuBar extends MenuBar {
 			
 		});
 		miAbout = new MenuItem("About");
+		miAbout.setOnAction(event -> {
+			// For later
+		});
 	}
 
 	public void addMenuItems() {
