@@ -2,7 +2,14 @@ package demo;
 
 
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +37,9 @@ public class Demo extends Application {
 	    WritableImage fImage = wb.balance();
 		imageView.setImage(fImage);
 //	    imageView.setImage(wImage);
+		BufferedImage bi=SwingFXUtils.fromFXImage((Image)fImage, null);//converts to BufferedImage to save photo
+		File a=new File("testImage1.bmp");
+		ImageIO.write( bi, "png", a );//end saving
 	    StackPane root = new StackPane();
 	    root.getChildren().add(imageView);
 	    Scene scene = new Scene(root, 300, 250);
