@@ -29,6 +29,7 @@ public class Demo extends Application {
 	    WhiteBalance wb= new WhiteBalance(wImage);
 	    WritableImage fImage = wb.balance();
 		imageView.setImage(fImage);
+//	    imageView.setImage(wImage);
 	    StackPane root = new StackPane();
 	    root.getChildren().add(imageView);
 	    Scene scene = new Scene(root, 300, 250);
