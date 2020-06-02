@@ -7,21 +7,23 @@ import javafx.stage.Stage;
 import view.MiMenuBar;
 
 public class App extends Application {
-	public static String TITLE = "Pixel Inverter";
-	private MiMenuBar menuBar;
-	private BorderPane root;
-	
+	private static final String TITLE = "Pixel Inverter";
+	private static final BorderPane ROOT = new BorderPane();
+	private static final MiMenuBar MENU_BAR = new MiMenuBar();
+
 	@Override
 	public void start(Stage stage) throws Exception {
-		menuBar = new MiMenuBar();
-		root = new BorderPane();
-		root.setTop(menuBar);
-		stage.setTitle(App.TITLE);
-		stage.setScene(new Scene(root, 600, 600));
+		ROOT.setTop(MENU_BAR);
+		stage.setTitle(TITLE);
+		stage.setScene(new Scene(ROOT, 600, 600));
 		stage.show();
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public static BorderPane getRoot() {
+		return ROOT;
 	}
 }
