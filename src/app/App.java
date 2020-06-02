@@ -13,9 +13,10 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		final int WIDTH = 300, HEIGHT = 300;
 		ROOT.setTop(MENU_BAR);
 		stage.setTitle(TITLE);
-		stage.setScene(new Scene(ROOT, 600, 600));
+		stage.setScene(new Scene(ROOT, WIDTH, HEIGHT));
 		stage.show();
 	}
 	

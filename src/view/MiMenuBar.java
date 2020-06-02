@@ -40,8 +40,13 @@ public class MiMenuBar extends MenuBar {
 			File file = MyFiles.emitImageChooser().showOpenDialog(new Stage());
 			if (file != null) {
 				try { // Try to display image
-					ImageView iv = new ImageView(new Image(new FileInputStream(file)));
+					Image img = new Image(new FileInputStream(file));
+					ImageView iv = new ImageView(img);
 					App.getRoot().setCenter(iv);
+					Stage stage = (Stage) App.getRoot().getScene().getWindow();
+					stage.setWidth(img.getWidth() + 100);
+					stage.setHeight(img.getHeight() + 100);
+					stage.centerOnScreen();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
