@@ -18,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.Inverter;
 import model.WhiteBalance;
+import utils.MyFiles;
 
 public class Demo extends Application {
 
@@ -37,9 +38,7 @@ public class Demo extends Application {
 	    WritableImage fImage = wb.balance();
 		imageView.setImage(fImage);
 //	    imageView.setImage(wImage);
-		BufferedImage bi=SwingFXUtils.fromFXImage((Image)fImage, null);//converts to BufferedImage to save photo
-		File a=new File("testImage1.bmp");
-		ImageIO.write( bi, "png", a );//end saving
+		MyFiles.imageWriter(fImage, "save1.bmp");
 	    StackPane root = new StackPane();
 	    root.getChildren().add(imageView);
 	    Scene scene = new Scene(root, 300, 250);
