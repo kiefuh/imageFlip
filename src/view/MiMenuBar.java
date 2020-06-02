@@ -6,12 +6,15 @@ import java.io.FileNotFoundException;
 
 import app.App;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.ImageInverter;
 import utils.MyFiles;
 
 /**
@@ -35,8 +38,7 @@ public class MiMenuBar extends MenuBar {
 		miOpen.setOnAction(event -> {
 			File file = MyFiles.emitImageChooser().showOpenDialog(new Stage());
 			if (file != null) {
-				
-				try {
+				try { // Try to display image
 					ImageView iv = new ImageView(new Image(new FileInputStream(file)));
 					App.getRoot().setCenter(iv);
 				} catch (FileNotFoundException e) {
@@ -54,11 +56,19 @@ public class MiMenuBar extends MenuBar {
 		});
 		miColorNeg = new MenuItem("Color Negative");
 		miColorNeg.setOnAction(event -> {
-			
+			Object o = App.getRoot().getCenter();
+			if (o instanceof ImageView) { // Check if object is a ImageView
+				ImageView iv = (ImageView) o;
+				ImageInverter imgInverter = new ImageInverter();
+				Image img = imgInverter.invert(iv.getImage());
+				iv.setImage(img);
+			}
 		});
 		miAbout = new MenuItem("About");
 		miAbout.setOnAction(event -> {
-			// For later
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle(App.getTitle());
+			alert.showAndWait();
 		});
 	}
 

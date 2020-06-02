@@ -23,6 +23,10 @@ public class App extends Application {
 		launch(args);
 	}
 	
+	public static String getTitle() {
+		return TITLE;
+	}
+	
 	public static BorderPane getRoot() {
 		return ROOT;
 	}
