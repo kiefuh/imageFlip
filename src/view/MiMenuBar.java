@@ -1,11 +1,16 @@
 package view;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
+import app.App;
 import javafx.application.Platform;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import utils.MyFiles;
 
@@ -31,6 +36,12 @@ public class MiMenuBar extends MenuBar {
 			File file = MyFiles.emitImageChooser().showOpenDialog(new Stage());
 			if (file != null) {
 				
+				try {
+					ImageView iv = new ImageView(new Image(new FileInputStream(file)));
+					App.getRoot().setCenter(iv);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 		miSaveAs = new MenuItem("Save As");
