@@ -29,6 +29,9 @@ public class MiMenuBar extends MenuBar {
 		miOpen = new MenuItem("Open");
 		miOpen.setOnAction(event -> {
 			File file = MyFiles.emitImageChooser().showOpenDialog(new Stage());
+			if (file != null) {
+				
+			}
 		});
 		miSaveAs = new MenuItem("Save As");
 		miSaveAs.setOnAction(event -> {
