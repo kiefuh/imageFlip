@@ -34,18 +34,18 @@ public class WhiteBalance {
 		PixelWriter pw= newImage.getPixelWriter();
 		for(int i=0;i<width;i++) {
 			for(int j=0;j<height;j++) {
-				int argb=pr.getArgb(i, j);
+				int argb=pr.getArgb(i, j);//grabs pixels argb value then splits it into the individual components
 				int a=(argb>>24)&0xFF;
 				int r=(argb>>16)&0xFF;
 				int g=(argb>>8)&0xFF;
 				int b=argb&0xFF;
-				alpha.add(a);
+				alpha.add(a);//adding individual components into their respective arrays
 				red.add(r);
 				blue.add(b);
 				green.add(g);
 			}
 		}
-		java.util.Collections.sort(red);
+		java.util.Collections.sort(red);//sorting arrays to find percentiles
 		java.util.Collections.sort(green);
 		java.util.Collections.sort(blue);
 		int fifthPecentileRed=findPercentile(5,red);
@@ -56,15 +56,15 @@ public class WhiteBalance {
 		int upperBoundGreen=findPercentile(95,green);
 		for(int i=0;i<width;i++) {
 		for(int j=0;j<height;j++) {
-			int argb=pr.getArgb(i, j);
+			int argb=pr.getArgb(i, j);//grabbing pixel again to be modified
 			int a=(argb>>24)&0xFF;
 			int r=(argb>>16)&0xFF;
 			int g=(argb>>8)&0xFF;
 			int b=argb&0xFF;
-			int newReds=(r-fifthPecentileRed)*255/(upperBound-fifthPecentileRed);
+			int newReds=(r-fifthPecentileRed)*255/(upperBound-fifthPecentileRed);//applying white balance on individual components
 			int newBlue=(b-fifthPecentileBlue)*255/(upperBoundBlue-fifthPecentileBlue);
 			int newGreen=(g-fifthPecentileGreen)*255/(upperBoundGreen-fifthPecentileGreen);
-			if(newReds>255) {
+			if(newReds>255) {//keeping pixels within the rgb range
 				newReds=255;
 			}
 			if(newReds<0) {
@@ -83,7 +83,7 @@ public class WhiteBalance {
 				newGreen=0;
 			}
 			int newColor=(a<<24)|(newReds<<16)|(newGreen<<8)|newBlue;
-			pw.setArgb(i, j, newColor);
+			pw.setArgb(i, j, newColor);//writes new image pixels
 		}
 	}
 		return newImage;
