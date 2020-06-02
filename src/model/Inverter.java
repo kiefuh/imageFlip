@@ -35,36 +35,4 @@ public class Inverter {
 		return wImage;
 	}
 	
-	
-	
-//	public WritableImage invert() {//applies white balance then return 
-//		WritableImage wImage =initialize();
-//		PixelWriter pixelWriter = wImage.getPixelWriter();
-//		double max=0;
-//		double min=360;
-//		for(int i=0;i<width;i++) {
-//			
-//			for(int j=0;j<height;j++) {
-//				Color color=wImage.getPixelReader().getColor(i, j);
-//				if(max<color.getHue()) {
-//					max=color.getHue();
-//				}
-//				if(min>color.getHue()) {
-//					min=color.getHue();
-//				}
-//			}
-//		}
-//		double hue=max-min;
-//		double newHue;
-//		for(int i=0;i<width;i++) {
-//			for(int j=0;j<height;j++) {
-//				Color color=wImage.getPixelReader().getColor(i, j);
-//				newHue=(color.getHue()-min)*360/hue;
-//				color=color.deriveColor(n, color.getSaturation(), color.getBrightness(), color.getOpacity());
-//				pixelWriter.setColor(i, j, color);
-//			}
-//		}
-//		return wImage;
-//	}
-	
 }
