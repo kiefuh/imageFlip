@@ -29,22 +29,22 @@ public class Demo extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Image image= new Image("ATTEMPT1.png");
-		ImageView imageView = new ImageView();
-	    imageView.setImage(image);  
-	    Inverter inverter = new Inverter(image);
-	    WritableImage wImage = inverter.initialize();
-	    WhiteBalance wb= new WhiteBalance(wImage);
-	    WritableImage fImage = wb.balance();
-		imageView.setImage(fImage);
-//	    imageView.setImage(wImage);
-		MyFiles.imageWriter(fImage, "save1.png");
-	    StackPane root = new StackPane();
-	    root.getChildren().add(imageView);
-	    Scene scene = new Scene(root, 300, 250);
-	    primaryStage.setTitle("Image Write Test");
-	    primaryStage.setScene(scene);
-	    primaryStage.show();
+//		Image image= new Image("ATTEMPT1.png");
+//		ImageView imageView = new ImageView();
+//	    imageView.setImage(image);  
+//	    Inverter inverter = new Inverter(image);
+//	    WritableImage wImage = inverter.initialize();
+//	    WhiteBalance wb= new WhiteBalance(wImage);
+//	    WritableImage fImage = wb.balance();
+//		imageView.setImage(fImage);
+////	    imageView.setImage(wImage);
+//		MyFiles.imageWriter(fImage, "save1.png");
+//	    StackPane root = new StackPane();
+//	    root.getChildren().add(imageView);
+//	    Scene scene = new Scene(root, 300, 250);
+//	    primaryStage.setTitle("Image Write Test");
+//	    primaryStage.setScene(scene);
+//	    primaryStage.show();
 	}
 
 }
