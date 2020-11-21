@@ -47,10 +47,12 @@ public class MiMenuBar extends MenuBar {
 					final int PADDING = 100;
 					Image img = new Image(new FileInputStream(file));
 					ImageView iv = new ImageView(img);
+					iv.setFitHeight(400);
+					iv.setFitWidth(500);
 					App.getRoot().setCenter(iv);
 					Stage stage = (Stage) App.getRoot().getScene().getWindow();
-					stage.setWidth(img.getWidth() + PADDING);
-					stage.setHeight(img.getHeight() + PADDING);
+					stage.setWidth(iv.getFitWidth() + PADDING);
+					stage.setHeight(iv.getFitHeight() + PADDING);
 					stage.centerOnScreen();
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
